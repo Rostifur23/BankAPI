@@ -3,8 +3,27 @@
     <head>
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        
+        <!-- User Login Form -->
+        <div class="container">
+            <h1>Log In</h1>
+            <form method="POST" action="http://localhost:8080/api/bankapp/user/login/">
+                <input class="form_input" placeholder="email" type="email" name="email"/>
+                <br>
+                <input class="form_input" placeholder="password" type="text" name="password"/>
+                <br>
+                <input class="form_btn" type="submit" value="Submit"/>
+            </form>
+             <!-- Link to Create Account page -->
+            <a href="http://localhost:8080/api/bankapp/user/account">Create an Account</a>
+        </div>
+        
+        
+        
+       
+        
     </body>
 </html>

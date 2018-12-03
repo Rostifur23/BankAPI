@@ -7,6 +7,7 @@ package com.mycompany.bankapi;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -126,12 +127,11 @@ public class BankService {
     // Entry Point 11: User - Log In
     @POST
     @Path("user/login")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void userLogIn(String credentials){
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void userLogIn(@FormParam("email") String email, @FormParam("password") String password){
         
         // set the userSession Variable here
-        
-        System.out.println(credentials);
+        System.out.println(email + password);
         
     }
     
