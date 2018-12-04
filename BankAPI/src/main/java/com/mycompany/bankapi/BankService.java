@@ -40,10 +40,14 @@ public class BankService {
     // Entry Point 2: User - Create Account
     @POST
     @Path("/user/account")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public void createUserAccount(String accountDetails){
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void createUserAccount(@FormParam("name") String name, @FormParam("email") String email, @FormParam("password") String password, @FormParam("con_password") String confirmPassword, @FormParam("address") String address){
         
-        System.out.println(accountDetails);
+        System.out.println(name);
+        System.out.println(email);
+        System.out.println(password);
+        System.out.println(confirmPassword);
+        System.out.println(address);
         
     }
     
@@ -68,18 +72,20 @@ public class BankService {
     }
     
     // Entry Point 5: User - Edit Account (Password)
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("user/account/password")
-    public void updatePassword(String password) {
+    public void updatePassword(@FormParam("password") String password, @FormParam("con_password") String confirmPassword, @FormParam("new_password") String newPassword) {
         System.out.println(password);
+        System.out.println(confirmPassword);
+        System.out.println(newPassword);
     }
     
     // Entry Point 6: User - Edit Account (Address)
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Path("user/account/address")
-    public void updateAddress(String address) {
+    public void updateAddress(@FormParam("address") String address) {
         System.out.println(address);
     }
     
