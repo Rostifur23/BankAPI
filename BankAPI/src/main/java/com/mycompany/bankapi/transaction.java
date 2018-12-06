@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -35,6 +36,7 @@ public class transaction implements Serializable {
     private int account_id;
     
     @ManyToOne
+    @JoinColumn(name="account_id")
     private account acc;
    
     public transaction(int trans_id, long trans_date, String trans_desc, double new_balance, String trans_type, int trans_to, int account_id){

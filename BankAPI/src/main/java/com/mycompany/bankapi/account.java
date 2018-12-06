@@ -6,12 +6,12 @@
 package com.mycompany.bankapi;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -33,8 +33,17 @@ public class account implements Serializable {
     private String account_type;
     private int customer_id;
 
-    @OneToMany(targetEntity = customers.class)
-    private List customersList;
+    @ManyToOne
+    @JoinColumn(name="customer_id")
+    private customers cust;
+
+    public customers getCust() {
+        return cust;
+    }
+
+    public void setCust(customers cust) {
+        this.cust = cust;
+    }
 
     public int getAccount_id() {
         return account_id;
@@ -82,16 +91,7 @@ public class account implements Serializable {
 
     public void setCustomer_id(int customer_id) {
         this.customer_id = customer_id;
-    }
-
-    public List getCustomersList() {
-        return customersList;
-    }
-
-    public void setCustomersList(List customersList) {
-        this.customersList = customersList;
-    }
-    
+    }  
     
     
     

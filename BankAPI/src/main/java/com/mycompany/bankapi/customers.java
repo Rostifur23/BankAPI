@@ -34,8 +34,6 @@ public class customers implements Serializable {
     private String email;
     private String password;
     
-    @ManyToOne
-    private account acc;
 /*    
     //TODO: Does this go here?
     @OneToMany
@@ -100,14 +98,6 @@ public class customers implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public account getAcc() {
-        return acc;
-    }
-
-    public void setAcc(account acc) {
-        this.acc = acc;
     }
     
 }
