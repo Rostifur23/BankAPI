@@ -5,6 +5,10 @@
  */
 package com.mycompany.bankapi;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -13,6 +17,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -25,15 +30,17 @@ public class BankService {
     
     private int userSession = 0;
     BankResource res = new BankResource();
+    Gson gson = new Gson();
     
     // Entry Point 1: Account Selection
     @GET
     @Path("accounts/{uid}")
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getBankAccounts(@PathParam("uid") 
             String uid) {
         
         String output = "This entry point will return all bank accounts for the user: " + uid;
-        return Response.status(200).entity(output).build();
+        return Response.status(200).entity(gson.toJson(output)).build();
         
     }
     
@@ -137,7 +144,8 @@ public class BankService {
     public void userLogIn(@FormParam("email") String email, @FormParam("password") String password){
         
         // set the userSession Variable here
-        System.out.println(email + password);
+        System.out.println(email);
+        System.out.println(password);
         
     }
     
