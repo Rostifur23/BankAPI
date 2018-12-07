@@ -6,6 +6,7 @@
 package com.mycompany.bankapi;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import com.mycompany.bankapi.account;
 
 /**
  *
@@ -100,4 +102,30 @@ public class customers implements Serializable {
         this.password = password;
     }
     
+    
+    
+        public static void main(String[] args){
+        
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("persistance_connect");
+        EntityManager entitymanager = emfactory.createEntityManager();
+        entitymanager.getTransaction().begin();
+                
+        customers cust = new customers();
+
+        entitymanager.persist(cust);
+
+        account acc1 = new account();
+
+        acc1.setCust(cust);
+
+        // entitymanager.persist(trans1);
+        
+        ArrayList<account> list = new ArrayList<>();
+        list.add(acc1);
+        
+        entitymanager.getTransaction().commit();
+        entitymanager.close();
+        emfactory.close();
+    }
+        
 }

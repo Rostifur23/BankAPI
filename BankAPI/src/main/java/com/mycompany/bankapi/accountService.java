@@ -17,7 +17,7 @@ import javax.ws.rs.Path;
 @Path("/test")
 public class accountService {
     public static void main(String [] args){
-        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("persistance-connect");
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("persistance_connect");
         EntityManager entitymanager = emfactory.createEntityManager();
         entitymanager.getTransaction().begin();
         

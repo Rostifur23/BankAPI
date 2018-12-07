@@ -1,0 +1,8 @@
+com\mycompany\bankapi\BankService.class
+com\mycompany\bankapi\customers.class
+com\mycompany\bankapi\transaction.class
+com\mycompany\bankapi\BankResource.class
+com\mycompany\bankapi\accountService.class
+com\mycompany\bankapi\customersService.class
+com\mycompany\bankapi\account.class
+com\mycompany\bankapi\transactionService.class

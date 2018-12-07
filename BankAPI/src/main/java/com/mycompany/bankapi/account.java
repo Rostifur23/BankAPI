@@ -7,11 +7,14 @@ package com.mycompany.bankapi;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Persistence;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -44,6 +47,10 @@ public class account implements Serializable {
         this.balance = balance;
         this.account_type = account_type;
         this.customer_id = customer_id;
+    }
+    
+    public account(){
+        
     }
 
     public customers getCust() {
@@ -100,9 +107,29 @@ public class account implements Serializable {
 
     public void setCustomer_id(int customer_id) {
         this.customer_id = customer_id;
-    }  
+    }
     
-    
+    public static void main(String [] args){
+        EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("persistance_connect");
+        EntityManager entitymanager = emfactory.createEntityManager();
+        entitymanager.getTransaction().begin();
+        
+        customers acc = new customers();
+        
+        entitymanager.persist(acc);
+        
+        account acc1 = new account(1, 123, 23, 50.00, "checking", 1);   
+        
+        acc1.setCust(acc);
+        
+        entitymanager.persist(acc1);
+        
+        
+        
+        entitymanager.getTransaction().commit();
+        entitymanager.close();
+        emfactory.close();
+    }
     
     
 }
