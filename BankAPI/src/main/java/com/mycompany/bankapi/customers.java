@@ -30,7 +30,7 @@ public class customers implements Serializable {
     private int customer_id;
     
     private String name;
-    private String customerName;
+    private String customer_adr;
     private String email;
     private String password;
     
@@ -47,11 +47,11 @@ public class customers implements Serializable {
         this.transactionList = transactionList;
     }
 */    
-    public customers(int customer_id, String name, String customerName, String email, String password){
+    public customers(int customer_id, String name, String customer_adr, String email, String password){
         super();
         this.customer_id = customer_id;
         this.name = name;
-        this.customerName = customerName;
+        this.customer_adr = customer_adr;
         this.email = email;
         this.password = password;
     }
@@ -76,12 +76,12 @@ public class customers implements Serializable {
         this.name = name;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public String getCustomerAdr() {
+        return customer_adr;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setCustomerAdr(String customer_adr) {
+        this.customer_adr = customer_adr;
     }
 
     public String getEmail() {

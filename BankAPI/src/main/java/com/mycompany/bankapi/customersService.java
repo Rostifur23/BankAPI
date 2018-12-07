@@ -21,9 +21,7 @@ public class customersService {
         entitymanager.getTransaction().begin();
                 
         //Accounts
-        account acc = new account();
-        
-        entitymanager.persist(acc);
+
         //Creating the account entity
         //setSort_code etc etc...
         

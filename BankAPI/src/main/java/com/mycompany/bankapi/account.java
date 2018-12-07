@@ -37,6 +37,15 @@ public class account implements Serializable {
     @JoinColumn(name="customer_id")
     private customers cust;
 
+    public account(int account_id, int sort_code, int account_num, double balance, String account_type, int customer_id) {
+        this.account_id =  account_id;
+        this.sort_code = sort_code;
+        this.account_num = account_num;
+        this.balance = balance;
+        this.account_type = account_type;
+        this.customer_id = customer_id;
+    }
+
     public customers getCust() {
         return cust;
     }
