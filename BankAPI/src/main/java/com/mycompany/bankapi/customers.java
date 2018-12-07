@@ -104,7 +104,7 @@ public class customers implements Serializable {
     
     
     
-        public static void main(String[] args){
+    public static void main(String[] args){
         
         EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("persistance_connect");
         EntityManager entitymanager = emfactory.createEntityManager();
@@ -125,7 +125,7 @@ public class customers implements Serializable {
         
         entitymanager.getTransaction().commit();
         entitymanager.close();
-        emfactory.close();
+        emfactory.close(); 
     }
         
 }

@@ -114,15 +114,15 @@ public class account implements Serializable {
         EntityManager entitymanager = emfactory.createEntityManager();
         entitymanager.getTransaction().begin();
         
-        customers acc = new customers();
-        
-        entitymanager.persist(acc);
-        
-        account acc1 = new account(1, 123, 23, 50.00, "checking", 1);   
-        
-        acc1.setCust(acc);
-        
-        entitymanager.persist(acc1);
+//        customers acc = new customers();
+//        
+//        entitymanager.persist(acc);
+//        
+//        account acc1 = new account(1, 123, 23, 50.00, "checking", 1);   
+//        
+//        acc1.setCust(acc);
+//        
+//        entitymanager.persist(acc1);
         
         
         
