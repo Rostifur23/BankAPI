@@ -33,13 +33,12 @@ public class transaction implements Serializable {
     private double new_balance;
     private String trans_type;
     private int trans_to;
-    private int account_id;
     
     @ManyToOne
     @JoinColumn(name="account_id")
     private account acc;
    
-    public transaction(int trans_id, long trans_date, String trans_desc, double new_balance, String trans_type, int trans_to, int account_id){
+    public transaction(int trans_id, long trans_date, String trans_desc, double new_balance, String trans_type, int trans_to){
         super();
         this.trans_id = trans_id;
         this.trans_date = trans_date;
@@ -47,7 +46,6 @@ public class transaction implements Serializable {
         this.new_balance = new_balance;
         this.trans_type = trans_type;
         this.trans_to = trans_to;
-        this.account_id = account_id;
     }
     
     public transaction(){
@@ -100,14 +98,6 @@ public class transaction implements Serializable {
 
     public void setTrans_to(int trans_to) {
         this.trans_to = trans_to;
-    }
-
-    public int getAccount_id() {
-        return account_id;
-    }
-
-    public void setAccount_id(int account_id) {
-        this.account_id = account_id;
     }
 
     public account getAcc() {

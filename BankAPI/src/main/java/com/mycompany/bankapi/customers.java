@@ -13,11 +13,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import com.mycompany.bankapi.account;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElementWrapper;
 
 /**
  *
@@ -35,20 +38,7 @@ public class customers implements Serializable {
     private String customer_adr;
     private String email;
     private String password;
-    
-/*    
-    //TODO: Does this go here?
-    @OneToMany
-    private List transactionList;
-
-    public List getTransactionList() {
-        return transactionList;
-    }
-
-    public void setTransactionList(List transactionList) {
-        this.transactionList = transactionList;
-    }
-*/    
+      
     public customers(int customer_id, String name, String customer_adr, String email, String password){
         super();
         this.customer_id = customer_id;
@@ -59,7 +49,7 @@ public class customers implements Serializable {
     }
     
     public customers(){
-        super();
+        accounts = new ArrayList<>();
     }
 
     public int getCustomer_id() {
@@ -102,7 +92,18 @@ public class customers implements Serializable {
         this.password = password;
     }
     
+    @OneToMany(targetEntity=account.class, cascade = CascadeType.ALL, mappedBy="cust")
+    private List<account> accounts;
     
+    private void setAccounts(List<account> accountlist){
+        this.accounts = accountlist;
+    }
+    
+    @XmlElementWrapper(name="account")
+    @XmlElementRef()
+    public List<account> getAccounts(){
+        return accounts;
+    }
     
     public static void main(String[] args){
         
@@ -114,14 +115,14 @@ public class customers implements Serializable {
 
         entitymanager.persist(cust);
 
-        account acc1 = new account();
+        account acc1 = new account(1, 123, 23, 50.00, "checking");
 
-        acc1.setCust(cust);
+        acc1.setCustomer(cust);
 
         // entitymanager.persist(trans1);
+        ArrayList<account> accounts = new ArrayList<>();
         
-        ArrayList<account> list = new ArrayList<>();
-        list.add(acc1);
+        accounts.add(acc1);
         
         entitymanager.getTransaction().commit();
         entitymanager.close();

@@ -6,6 +6,8 @@
 package com.mycompany.bankapi;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,8 +16,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
+import javax.transaction.Transaction;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -34,30 +40,42 @@ public class account implements Serializable {
     private int account_num;
     private double balance;
     private String account_type;
-    private int customer_id;
 
     @ManyToOne
     @JoinColumn(name="customer_id")
     private customers cust;
+    
 
-    public account(int account_id, int sort_code, int account_num, double balance, String account_type, int customer_id) {
+    public account(int account_id, int sort_code, int account_num, double balance, String account_type) {
         this.account_id =  account_id;
         this.sort_code = sort_code;
         this.account_num = account_num;
         this.balance = balance;
         this.account_type = account_type;
-        this.customer_id = customer_id;
     }
     
     public account(){
         
     }
+    
+    @OneToMany(targetEntity = transaction.class, cascade = CascadeType.ALL, mappedBy="acc")
+    private List<transaction> transaction;
+    
+    public void setTransactions(List<transaction> transactionlist){
+        this.transaction = transactionlist;
+    }
+    
+    @XmlElementWrapper(name="transaction")
+    @XmlElementRef()
+    public List<transaction> getTransaction(){
+        return transaction;
+    }
 
-    public customers getCust() {
+    public customers getCustomer() {
         return cust;
     }
 
-    public void setCust(customers cust) {
+    public void setCustomer(customers cust) {
         this.cust = cust;
     }
 
@@ -99,14 +117,6 @@ public class account implements Serializable {
 
     public void setAccount_type(String account_type) {
         this.account_type = account_type;
-    }
-
-    public int getCustomer_id() {
-        return customer_id;
-    }
-
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
     }
     
     public static void main(String [] args){

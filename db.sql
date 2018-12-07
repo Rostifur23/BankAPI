@@ -1,4 +1,7 @@
-# CREATE DATABASE bankapi;
+CREATE DATABASE bankapi;
+# DROP database bankapi;
+
+USE bankapi;
 
 DROP TABLE IF EXISTS customers;
 
@@ -7,7 +10,7 @@ CREATE TABLE customers(
     customer_addr varchar(255),
     email_addr varchar(255),
     password varchar(25),
-    customer_id int,
+    customer_id int auto_increment,
     PRIMARY KEY (customer_id)
 );
 
@@ -18,7 +21,7 @@ CREATE TABLE account(
     account_num int,
     balance double,
     account_type varchar(255),
-    account_id int,
+    account_id int auto_increment,
     customer_id int,
     PRIMARY KEY (account_id),
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
@@ -32,7 +35,7 @@ CREATE TABLE transaction(
     new_balance double,
     trans_type varchar(255),
     trans_to int,
-    trans_id int,
+    trans_id int auto_increment,
     account_id int,
     PRIMARY KEY (trans_id),
     FOREIGN KEY (trans_to) REFERENCES account(account_id),
